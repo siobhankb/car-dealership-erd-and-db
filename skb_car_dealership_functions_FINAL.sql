@@ -51,8 +51,6 @@ BEGIN
 END; 
 $$
 
-
-
 SELECT store_sales_record(5); 
 
 --WHY ISN'T THIS RETURNING SEPARATE COLUMNS???

@@ -1,4 +1,3 @@
-
 --populate *sales_rep* table
 INSERT INTO sales_rep (last_name, first_name, hire_date, store_id)
 VALUES ('Tappet',
@@ -184,6 +183,7 @@ VALUES ('Von Dreiver',
 	'ME', 
 	01240
 );
+
 
 --populate *store* table
 INSERT INTO store (store_name)

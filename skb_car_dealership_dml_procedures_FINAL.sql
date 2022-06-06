@@ -1,45 +1,3 @@
---procedure to update manager of store
-CREATE OR REPLACE PROCEDURE store_mgr(name_of_store VARCHAR(50), first_ VARCHAR(50), last_ VARCHAR(50))
-LANGUAGE plpgsql
-AS $$
-BEGIN 
-	UPDATE store SET store_mgr = (
-		SELECT sales_rep_id 
-		FROM sales_rep 
-		WHERE first_name = first_ AND last_name = last_
-		)
-	WHERE store_name = name_of_store;
-END;
-$$
-
-
-CALL store_mgr('Drive-A-Way Dealz', 'Clack', 'Tappet');
-CALL store_mgr('Shifting Gearz Hybrid Auto Dealz', 'Megan', 'Mahdel');
-CALL store_mgr('Four Wheel Dealz', 'Zbigniew', 'Rigg');
-
-
-
---procedure to change employee to new store
-CREATE OR REPLACE PROCEDURE change_employee_store(employ_type VARCHAR(10), first_initial VARCHAR(1), last_ VARCHAR(50), new_store_id INTEGER)
-LANGUAGE plpgsql
-AS $$
-BEGIN  
-	IF employ_type = 'sales_rep' THEN 
-		UPDATE sales_rep SET store_id = new_store_id
-		WHERE first_name LIKE first_initial || '%' AND last_name = last_;
-	END IF;
-	IF employ_type = 'mechanic' THEN 
-		UPDATE mechanic SET store_id = new_store_id
-		WHERE first_name LIKE first_initial || '%' AND last_name = last_;
-	END IF;
-END;
-$$;
-
-
-CALL change_employee_store('sales_rep',  'O', 'Buggy', 2);
-
-
-
 --procedure to add car to car_sale table;
 --first create instance of 'car'
 --link its id into car_sale 
@@ -208,6 +166,43 @@ CALL new_invoice(7, 1720, 15, 'Erasmus', 'Biddraggenn');
 
 
 
+--procedure to update manager of store
+CREATE OR REPLACE PROCEDURE store_mgr(name_of_store VARCHAR(50), first_ VARCHAR(50), last_ VARCHAR(50))
+LANGUAGE plpgsql
+AS $$
+BEGIN 
+	UPDATE store SET store_mgr = (
+		SELECT sales_rep_id 
+		FROM sales_rep 
+		WHERE first_name = first_ AND last_name = last_
+		)
+	WHERE store_name = name_of_store;
+END;
+$$
 
+CALL store_mgr('Drive-A-Way Dealz', 'Clack', 'Tappet');
+CALL store_mgr('Shifting Gearz Hybrid Auto Dealz', 'Megan', 'Mahdel');
+CALL store_mgr('Four Wheel Dealz', 'Zbigniew', 'Rigg');
+
+
+
+--procedure to change employee to new store
+CREATE OR REPLACE PROCEDURE change_employee_store(employ_type VARCHAR(10), first_initial VARCHAR(1), last_ VARCHAR(50), new_store_id INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN  
+	IF employ_type = 'sales_rep' THEN 
+		UPDATE sales_rep SET store_id = new_store_id
+		WHERE first_name LIKE first_initial || '%' AND last_name = last_;
+	END IF;
+	IF employ_type = 'mechanic' THEN 
+		UPDATE mechanic SET store_id = new_store_id
+		WHERE first_name LIKE first_initial || '%' AND last_name = last_;
+	END IF;
+END;
+$$;
+
+
+CALL change_employee_store('sales_rep',  'O', 'Buggy', 2);
 
 

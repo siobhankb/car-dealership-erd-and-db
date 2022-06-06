@@ -16,6 +16,7 @@ CREATE TABLE sales_rep(
 	FOREIGN KEY (store_id) REFERENCES store(store_id)
 );
 
+
 --set foreign key for store_id in sales_rep table
 ALTER TABLE store
 ADD FOREIGN KEY(store_mgr) REFERENCES sales_rep(sales_rep_id);
@@ -55,7 +56,6 @@ CREATE TABLE car(
 	color VARCHAR(20)
 );
 
-DROP table
 
 --Make *car_sale* TABLE 
 CREATE TABLE car_sale(
