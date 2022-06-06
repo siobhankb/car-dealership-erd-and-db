@@ -55,7 +55,7 @@ CREATE TABLE car(
 	color VARCHAR(20)
 );
 
-DROP table
+
 
 --Make *car_sale* TABLE 
 CREATE TABLE car_sale(
@@ -72,9 +72,6 @@ CREATE TABLE car_sale(
 	sticker NUMERIC(8,2),
 	promo BOOLEAN
 );
-
-ALTER TABLE car_sale 
-ADD COLUMN pre_owned BOOLEAN;
 
 
 --Make *customer_car* TABLE 
